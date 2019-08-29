@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import slugify from 'slugify';
 import Feature from "./Feature";
+import "./MainForm.css";
 
 
 const USCurrencyFormat = new Intl.NumberFormat('en-US', {
@@ -40,7 +41,12 @@ class MainForm extends Component {
         });
 
         return(
-            [features]
+            <React.Fragment>
+                <h2>Customize your laptop</h2>
+                <form className="main__form">
+                   {features}
+                </form>
+            </React.Fragment>
         );
     }
 }

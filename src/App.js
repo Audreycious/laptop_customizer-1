@@ -44,9 +44,14 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <MainForm updateFeature={this.updateFeature} selected={this.state.selected} features={this.props.features} />
-        <MainSummary selected={this.state.selected} />
+      <div className="App">
+          <header>
+              <h1>ELF Computing | Laptops</h1>
+          </header>
+          <main>
+            <MainForm updateFeature={this.updateFeature} selected={this.state.selected} features={this.props.features} />
+            <MainSummary selected={this.state.selected} />
+          </main>
       </div>
     );
   }

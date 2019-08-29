@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SummaryOption from "./SummaryOption";
+import "./MainSummary.css";
 
 
 const USCurrencyFormat = new Intl.NumberFormat('en-US', {
@@ -10,7 +11,6 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 class MainSummary extends Component {
     static defaultProps = { features: [], selected: [] };
     render() {
-        const features = this.props.features;
         const summary = Object.keys(this.props.selected).map((feature, i) => {
             const featureHash = feature + '-' + i;
             const selectedOption = this.props.selected[feature];
@@ -25,15 +25,7 @@ class MainSummary extends Component {
         );
 
         return (
-            <div className="App">
-            <header>
-                <h1>ELF Computing | Laptops</h1>
-            </header>
-            <main>
-                <form className="main__form">
-                <h2>Customize your laptop</h2>
-                {features}
-                </form>
+            <React.Fragment>
                 <section className="main__summary">
                 <h2>Your cart</h2>
                 {summary}
@@ -44,8 +36,7 @@ class MainSummary extends Component {
                     </div>
                 </div>
                 </section>
-            </main>
-            </div>
+            </React.Fragment>
         );
     }
 }
