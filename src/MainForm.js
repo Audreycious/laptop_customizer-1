@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import slugify from 'slugify';
-import { realpathSync } from 'fs';
+import Feature from "./Feature";
+
+
+const USCurrencyFormat = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
 
 class MainForm extends Component {
-    static defaultProps = { features: [] };
+    static defaultProps = { features: {} };
     render() {
         const features = Object.keys(this.props.features).map((feature, idx) => {
             const featureHash = feature + '-' + idx;
@@ -17,7 +23,7 @@ class MainForm extends Component {
                     className="feature__option"
                     name={slugify(feature)}
                     checked={item.name === this.props.selected[feature].name}
-                    onChange={e => this.updateFeature(feature, item)}
+                    onChange={e => this.props.updateFeature(feature, item)}
                   />
                   <label htmlFor={itemHash} className="feature__label">
                     {item.name} ({USCurrencyFormat.format(item.cost)})
@@ -25,16 +31,17 @@ class MainForm extends Component {
                 </div>
               );
             });
-      
+
             return (
-              <fieldset className="feature" key={featureHash}>
-                <legend className="feature__name">
-                  <h3>{feature}</h3>
-                </legend>
-                {options}
-              </fieldset>
+                <React.Fragment>
+                    <Feature updateFeature={this.props.updateFeature} featureHash={featureHash} features={features} options={options} />
+                </React.Fragment>
             );
-          });
+        });
+
+        return(
+            [features]
+        );
     }
 }
 

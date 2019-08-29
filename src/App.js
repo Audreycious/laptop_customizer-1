@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import MainForm from "./MainForm";
 import MainSummary from "./MainSummary";
-import features from "./index";
 
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
-import slugify from 'slugify';
 
 import './App.css';
-import { realpathSync } from 'fs';
+
 
 // This object will allow us to
 // easily convert numbers into US dollar values
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-});
+
 
 class App extends Component {
   state = {
@@ -48,11 +43,12 @@ class App extends Component {
   };
 
   render() {
-    <React.Fragment>
-    <MainForm selected={this.state.selected} features={features} />
-    <MainSummary />
-
-    </React.Fragment>
+    return (
+      <div>
+        <MainForm updateFeature={this.updateFeature} selected={this.state.selected} features={this.props.features} />
+        <MainSummary selected={this.state.selected} />
+      </div>
+    );
   }
 }
 
